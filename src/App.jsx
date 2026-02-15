@@ -11,14 +11,25 @@ const CardContent = ({ className = "", children }) => (
 
 const Button = ({ variant, className = "", ...props }) => (
   <button
-    className={`px-3 py-2 rounded-md border text-sm font-medium ${
+    className={[
+      "px-3 py-2 rounded-md border text-sm font-medium transition-colors",
+      "disabled:opacity-40 disabled:cursor-not-allowed",
       variant === "outline"
-        ? "bg-transparent"
-        : "bg-gray-900 text-white border-gray-900"
-    } ${className}`}
+        ? [
+            "bg-transparent",
+            "text-neutral-900 border-gray-300 hover:bg-gray-100",
+            "dark:text-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
+          ].join(" ")
+        : [
+            "bg-gray-900 text-white border-gray-900 hover:bg-gray-800",
+            "dark:bg-neutral-100 dark:text-neutral-900 dark:border-neutral-100 dark:hover:bg-neutral-200"
+          ].join(" "),
+      className
+    ].join(" ")}
     {...props}
   />
 );
+
 
 const Input = ({ className = "", ...props }) => (
   <input
