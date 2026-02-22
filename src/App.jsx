@@ -153,14 +153,14 @@ const TaskCard = memo(function TaskCard({
       initial={false}
       draggable
       onDragStart={e => onDragStart(e, task.id)}
-      className={`relative rounded-xl border p-3 flex items-start gap-3 shadow-sm cursor-grab min-w-0 ${
+      className={`relative rounded-xl border-2 p-3 flex items-start gap-3 cursor-grab min-w-0 transition-all duration-300 hover:scale-[1.02] ${
         dark
-          ? isCompleted
-            ? "bg-green-950/30 border-green-700"
-            : "bg-neutral-950 border-neutral-800"
-          : isCompleted
-          ? "bg-green-50 border-green-500"
-          : "bg-white"
+  ? isCompleted
+    ? "bg-white/5 border-teal-400/50 shadow-[0_0_25px_rgba(20,184,166,0.5)]"
+    : "bg-white/5 border-white/10 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+  : isCompleted
+  ? "bg-green-50 border-green-400 shadow-sm"
+  : "bg-white border-gray-200 hover:shadow-md"
       }`}
     >
       <button
@@ -246,12 +246,18 @@ const Column = memo(function Column({
       </h2>
 
       <div
-        onDrop={e => onDrop(e, keyName)}
-        onDragOver={onDragOver}
-        className={`border border-dashed rounded-2xl p-4 min-h-32 space-y-2 ${
-          dark ? "bg-neutral-900/40 border-neutral-700" : "bg-white/50"
-        }`}
-      >
+  onDrop={e => onDrop(e, keyName)}
+  onDragOver={onDragOver}
+  className={`border-2 border-dashed rounded-2xl p-4 min-h-32 space-y-2 transition-all duration-300 ${
+    keyName === "completed"
+      ? dark
+        ? "bg-white/5 border-teal-400/60 shadow-[0_0_40px_rgba(20,184,166,0.6)]"
+        : "bg-white border-teal-300 shadow-[0_0_25px_rgba(20,184,166,0.3)]"
+      : dark
+      ? "bg-neutral-900/40 border-neutral-700"
+      : "bg-white/50 border-gray-200"
+  }`}
+>
         {items.length === 0 ? (
           <p
             className={`text-sm text-center ${
@@ -1002,7 +1008,16 @@ export default function TasksForTheDayApp() {
                         : ""
                     }
                   />
-                  <Button onClick={addTask}>Add Task</Button>
+                  <button
+  onClick={addTask}
+  className={`px-5 py-2 rounded-xl font-semibold tracking-wide transition-all duration-300 ${
+    dark
+      ? "bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.7)] hover:scale-[1.03]"
+      : "bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 text-white shadow-md hover:scale-[1.03]"
+  }`}
+>
+  Add Task
+</button>
                 </div>
 
                 {/* Repeat controls */}
