@@ -905,11 +905,12 @@ export default function TasksForTheDayApp() {
           {/* Calendar + Summary + Add Task */}
           <div className="grid lg:grid-cols-3 gap-6">
             <Card
-  className={`backdrop-blur-xl border ${
+  className={`backdrop-blur-xl border-2 rounded-2xl ${
     dark
-      ? "bg-white/5 border-white/10 shadow-[0_0_30px_rgba(147,51,234,0.2)]"
-      : "bg-white/60 border-white shadow-md"
-  }`}>
+      ? "bg-white/5 border-fuchsia-400/70 shadow-[0_0_60px_rgba(217,70,239,0.7),0_0_120px_rgba(217,70,239,0.35)]"
+      : "bg-white/60 border-fuchsia-400 shadow-[0_0_50px_rgba(217,70,239,0.35)]"
+  }`}
+>
               <CardContent className="p-4">
                 <CalendarMonth
                   dark={dark}
@@ -923,7 +924,13 @@ export default function TasksForTheDayApp() {
               </CardContent>
             </Card>
 
-            <Card className={dark ? "bg-neutral-950 border-neutral-800" : ""}>
+            <Card
+  className={`backdrop-blur-xl border-2 rounded-2xl ${
+    dark
+      ? "bg-white/5 border-amber-300/70 shadow-[0_0_60px_rgba(251,191,36,0.6),0_0_120px_rgba(251,191,36,0.25)]"
+      : "bg-white/60 border-amber-400 shadow-[0_0_50px_rgba(251,191,36,0.3)]"
+  }`}
+>
               <CardContent className="p-4 space-y-3">
                 <div>
                   <p
@@ -975,7 +982,13 @@ export default function TasksForTheDayApp() {
               </CardContent>
             </Card>
 
-            <Card className={dark ? "bg-neutral-950 border-neutral-800" : ""}>
+            <Card
+  className={`backdrop-blur-xl border-2 rounded-2xl ${
+    dark
+      ? "bg-white/5 border-indigo-400/60 shadow-[0_0_50px_rgba(99,102,241,0.45)]"
+      : "bg-white/60 border-indigo-300 shadow-md"
+  }`}
+>
               <CardContent className="p-4 space-y-3">
                 <div className="flex gap-3">
                   <Input
