@@ -835,10 +835,15 @@ export default function TasksForTheDayApp() {
     <div className={dark ? "dark" : ""}>
       <Toast show={toast.show} message={toast.message} dark={dark} />
       <div
-        className={`min-h-screen p-6 ${
-          dark ? "bg-neutral-950" : "bg-neutral-100"
-        }`}
+  className={`min-h-screen p-6 relative overflow-hidden ${
+    dark
+      ? "bg-gradient-to-br from-[#0b1026] via-[#120a2a] to-[#000000]"
+      : "bg-gradient-to-br from-[#f3f4f6] via-[#f8fafc] to-[#e5e7eb]"
+  }`}
       >
+        {dark && (
+  <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle_at_20%_30%,#9333ea_0%,transparent_40%),radial-gradient(circle_at_80%_70%,#06b6d4_0%,transparent_40%)]" />
+)}
         <div className="max-w-6xl mx-auto space-y-6">
           {/* Header */}
           <div className="flex justify-between items-start flex-wrap gap-4">
@@ -890,16 +895,21 @@ export default function TasksForTheDayApp() {
               }`}
             >
               <motion.div
-                initial={false}
-                animate={{ width: `${progress}%` }}
-                className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
-              />
+  initial={false}
+  animate={{ width: `${progress}%` }}
+  className="h-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 shadow-[0_0_20px_rgba(168,85,247,0.6)]"
+/>
             </div>
           </div>
 
           {/* Calendar + Summary + Add Task */}
           <div className="grid lg:grid-cols-3 gap-6">
-            <Card className={dark ? "bg-neutral-950 border-neutral-800" : ""}>
+            <Card
+  className={`backdrop-blur-xl border ${
+    dark
+      ? "bg-white/5 border-white/10 shadow-[0_0_30px_rgba(147,51,234,0.2)]"
+      : "bg-white/60 border-white shadow-md"
+  }`}>
               <CardContent className="p-4">
                 <CalendarMonth
                   dark={dark}
@@ -1104,24 +1114,35 @@ export default function TasksForTheDayApp() {
                 </div>
 
                 {/* Undo / Redo */}
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    onClick={undo}
-                    disabled={undoStack.length === 0}
-                    className="flex-1"
-                  >
-                    Undo
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={redo}
-                    disabled={redoStack.length === 0}
-                    className="flex-1"
-                  >
-                    Redo
-                  </Button>
-                </div>
+                <div className="flex gap-3">
+  <button
+    onClick={undo}
+    disabled={undoStack.length === 0}
+    className={`flex-1 py-2 rounded-xl font-medium transition-all duration-300 ${
+      undoStack.length === 0
+        ? "opacity-40 cursor-not-allowed bg-gray-300 text-gray-600"
+        : dark
+        ? "bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.7)] hover:scale-[1.02]"
+        : "bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-white shadow-md hover:scale-[1.02]"
+    }`}
+  >
+    Undo
+  </button>
+
+  <button
+    onClick={redo}
+    disabled={redoStack.length === 0}
+    className={`flex-1 py-2 rounded-xl font-medium border transition-all duration-300 ${
+      redoStack.length === 0
+        ? "opacity-40 cursor-not-allowed bg-gray-200 text-gray-500"
+        : dark
+        ? "bg-white/5 border-white/10 text-neutral-200 hover:bg-white/10"
+        : "bg-white border-gray-300 hover:bg-gray-100"
+    }`}
+  >
+    Redo
+  </button>
+</div>
               </CardContent>
             </Card>
           </div>
