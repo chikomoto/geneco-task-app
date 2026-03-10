@@ -20,3 +20,4 @@ If you are developing a production application, we recommend using TypeScript wi
 1. Reminder for task notification
 2. Place for taking notes
 3. Fix bug for dropdown selection for task
+4. Autosave at the end of the day eg. 530pm
