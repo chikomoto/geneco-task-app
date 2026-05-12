@@ -21,3 +21,5 @@ If you are developing a production application, we recommend using TypeScript wi
 2. Place for taking notes
 3. Fix bug for dropdown selection for task
 4. Autosave at the end of the day eg. 530pm
+
+Note : Above upcoming changes is not final and depends on system limitation based on company policy
